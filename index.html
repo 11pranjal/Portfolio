@@ -10,8 +10,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="library/font-awesome/css/all.min.css" />
-  
- <style>
+
+    <!-- <style>
       * {
         margin: 0;
         padding: 0;
@@ -222,10 +222,12 @@
         width: 100%;
         height: 500px;
         object-fit: cover;
+        display: block;
+        border-bottom: 2px solid rgba(217, 127, 168, 0.2);
       }
 
       .project-info {
-        padding: 18px;
+        padding: 24px;
       }
 
       .project-info h3 {
@@ -316,6 +318,315 @@
         flex-shrink: 0;
       }
 
+      footer {
+        text-align: center;
+        padding: 30px;
+        font-size: 14px;
+        color: #666;
+        margin-top: 40px;
+      }
+    </style> -->
+  
+ <style>
+      :root {
+        --bg: #07111f;
+        --surface: #0f172a;
+        --surface-soft: #111c31;
+        --text: #f8fafc;
+        --muted: #cbd5e1;
+        --primary: #60a5fa;
+        --primary-dark: #3b82f6;
+        --accent: #34d399;
+        --border: rgba(148, 163, 184, 0.18);
+        --shadow: 0 16px 40px rgba(2, 8, 23, 0.35);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: radial-gradient(circle at top left, #11213d 0%, var(--bg) 45%, #030712 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      /* NAV */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 8%;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        background: rgba(7, 17, 31, 0.8);
+        backdrop-filter: blur(12px);
+        z-index: 1000;
+        border-bottom: 1px solid var(--border);
+      }
+
+      nav h1 {
+        font-size: 22px;
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin-left: 22px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: var(--primary);
+      }
+
+      /* LOGIN BUTTON */
+      .login-btn {
+        padding: 8px 16px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white !important;
+        font-weight: 600;
+        transition: 0.3s;
+        box-shadow: 0 8px 20px rgba(96, 165, 250, 0.2);
+      }
+
+      .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(96, 165, 250, 0.25);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .hero h2 {
+        font-size: 48px;
+        font-family: "Playfair Display", serif;
+        color: var(--text);
+      }
+
+      .hero span {
+        color: var(--primary);
+      }
+
+      .hero p {
+        margin-top: 14px;
+        font-size: 17px;
+        color: var(--muted);
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.7;
+      }
+
+      section {
+        padding: 90px 8%;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 40px;
+        color: var(--text);
+        font-family: "Playfair Display", serif;
+      }
+
+      /* GLASS */
+      .glass {
+        background: rgba(15, 23, 42, 0.88);
+        padding: 28px 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(18px);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .glass p {
+        font-size: 15px;
+        color: var(--muted);
+        line-height: 1.85;
+        margin-bottom: 12px;
+      }
+
+      .glass p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* CURRENTLY LIST */
+      .currently-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .currently-list li {
+        padding: 12px 0;
+        font-size: 15px;
+        color: var(--muted);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        line-height: 1.6;
+      }
+
+      .currently-list li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .currently-list li::before {
+        content: '→';
+        color: var(--accent);
+        font-weight: 600;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      /* PROJECTS */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      .project-card {
+        background: var(--surface);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: 0.3s;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .project-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 36px rgba(2, 8, 23, 0.3);
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .project-info {
+        padding: 20px;
+      }
+
+      .project-info h3 {
+        color: var(--primary);
+        margin-bottom: 8px;
+      }
+
+      .project-info > p {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+
+      .project-features {
+        padding-left: 18px;
+        margin: 10px 0;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .project-features li {
+        margin-bottom: 4px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 8px 14px;
+        margin-right: 8px;
+        margin-top: 12px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 14px;
+        background: var(--primary);
+        color: white;
+        transition: 0.2s;
+        font-weight: 600;
+      }
+
+      .btn:hover {
+        background: var(--primary-dark);
+      }
+
+      .btn.outline {
+        background: transparent;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+      }
+
+      .btn.outline:hover {
+        background: rgba(96, 165, 250, 0.12);
+      }
+
+      /* CONTACT */
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .contact-links a {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 500;
+        padding: 10px 6px;
+        border-radius: 10px;
+        transition: 0.2s;
+      }
+
+      .contact-links a:hover {
+        color: var(--primary);
+        background: rgba(96, 165, 250, 0.1);
+        padding-left: 12px;
+      }
+
+      .contact-links a i {
+        width: 36px;
+        height: 36px;
+        background: rgba(96, 165, 250, 0.14);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 15px;
+        flex-shrink: 0;
+      }
 
       /* SKILLS */
       .skills-grid {
@@ -325,25 +636,25 @@
       }
 
       .skill-card {
-        background: rgba(255, 255, 255, 0.65);
-        border-radius: 14px;
+        background: var(--surface-soft);
+        border-radius: 16px;
         padding: 20px 16px;
         text-align: center;
         backdrop-filter: blur(18px);
         transition: 0.3s;
-        border: 1px solid rgba(217, 127, 168, 0.1);
+        border: 1px solid var(--border);
       }
 
       .skill-card:hover {
         transform: translateY(-4px);
-        background: rgba(255, 255, 255, 0.85);
-        border-color: rgba(217, 127, 168, 0.35);
-        box-shadow: 0 8px 24px rgba(217, 127, 168, 0.12);
+        background: var(--surface);
+        border-color: rgba(96, 165, 250, 0.25);
+        box-shadow: var(--shadow);
       }
 
       .skill-card i {
         font-size: 28px;
-        color: #d97fa8;
+        color: var(--accent);
         margin-bottom: 10px;
         display: block;
       }
@@ -351,12 +662,12 @@
       .skill-card .skill-name {
         font-size: 13px;
         font-weight: 600;
-        color: #444;
+        color: var(--text);
       }
 
       .skill-card .skill-type {
         font-size: 11px;
-        color: #aaa;
+        color: #64748b;
         margin-top: 3px;
       }
 
@@ -364,7 +675,7 @@
         margin-bottom: 10px;
         font-size: 13px;
         font-weight: 600;
-        color: #c97aa0;
+        color: var(--primary);
         text-transform: uppercase;
         letter-spacing: 1px;
       }
@@ -379,7 +690,7 @@
         text-align: center;
         padding: 30px;
         font-size: 14px;
-        color: #666;
+        color: var(--muted);
         margin-top: 40px;
       }
     </style>
@@ -408,14 +719,8 @@
     <div class="hero">
       <h2>Hi, I'm <span>Pranjal</span></h2>
       <p>
-        Computer Engineering student building real-world AI/ML applications —
-        from emotion-aware systems to personalized recommendation engines.
+        Computer Engineering student building real-world AI/ML applications across Computer Vision and NLP, including emotion recognition, RAG-based Q&A chatbots, and personalized recommendation systems.
       </p>
-      <div>
-        <div class="hero-badge">
-          <span class="dot"></span> Seeking AI/ML Internship
-        </div>
-      </div>
     </div>
 
     <!-- ABOUT -->
@@ -423,17 +728,16 @@
       <h2 class="section-title">About Me</h2>
       <div class="glass">
         <p>
-          I'm a Computer Engineering student who got hooked on AI/ML because it actually does things 
-          not just runs in a notebook, but solves real problems people care about. That's what keeps me going.
-        </p>
-        <p>
-          I've built a face emotion detection system and a pet recommendation engine from scratch 
-          and learned a ton breaking both of them. I like figuring out why something doesn't work
-          just as much as making it work.
-        </p>
-        <p>
-          Right now I'm looking for an AI/ML internship where I can contribute, grow,
-          and work on problems that matter.
+          Computer Engineering graduate with a strong interest in Artificial
+          Intelligence and Machine Learning, backed by hands on experience building
+          practical AI applications. Developed intelligent solutions including a real time
+          emotion recognition system, a pet recommendation system, and an
+          agricultural chatbot that answers questions from uploaded PDF documents
+          using RAG and semantic search. Proficient in Python, FastAPI, TensorFlow,
+          Scikit-learn, React, and TypeScript, with experience integrating OpenAI and
+          Ollama models into AI applications. Passionate about solving real world
+          problems through AI and eager to contribute as an AI/ML Engineer by
+          building reliable, scalable, and impactful solutions.
         </p>
       </div>
     </section>
@@ -443,9 +747,9 @@
       <h2 class="section-title">Currently Focused On</h2>
       <div class="glass">
         <ul class="currently-list">
-          <li>Actively seeking an AI/ML internship — ready to contribute from day one</li>
-          <li>Open to roles in Computer Vision, NLP, or applied ML in general</li>
-          <li>Continuously improving my projects and learning from them</li>
+          <li>Open to AI/ML roles across Computer Vision, NLP, and Applied Machine Learning.</li>
+          <li>Continuously building real-world AI projects and expanding my practical skills.</li>
+          <li>Passionate about learning, solving problems, and applying AI to real-world challenges.</li>
         </ul>
       </div>
     </section>
@@ -527,6 +831,26 @@
       <div class="grid">
         <!-- PROJECT 1 -->
         <div class="project-card">
+          <img src="img/flat-wheat-fields-of-vojvodina-serbia.webp" alt="Agro-QA Chatbot" />
+          <div class="project-info">
+            <h3>Agro-QA Chatbot</h3>
+            <p>Developed a RAG-based AI chatbot for agricultural question answering. Implemented document upload, text extraction, chunking, FAISS-based semantic retrieval, and LLM-powered response generation to deliver accurate, context-aware answers from user-provided documents.</p>
+
+            <ul class="project-features">
+              <li>RAG-based document QA workflow</li>
+              <li>FAISS semantic retrieval</li>
+              <li>Context-aware responses from uploaded PDFs</li>
+            </ul>
+
+            <p><b>Tech Stack:</b> Python, FastAPI, FAISS, Sentence Transformers, Ollama, PyMuPDF/PyPDF2</p>
+
+            <a href="https://github.com/11pranjal/Agro-Crop-Q-A" target="_blank" class="btn">GitHub</a>
+            <a href="https://www.linkedin.com/posts/pranjal-thapa-8508b53bb_excited-to-share-agro-an-intelligent-ugcPost-7473637489942110208-oyT_/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAGZ4cXwB9qbqbzrBUkAwHsVk82Uy3Dtcrdg" target="_blank" class="btn outline">Demo</a>
+          </div>
+        </div>
+
+        <!-- PROJECT 2 -->
+        <div class="project-card">
           <img src="img/Faceemotion.png" alt="Face Emotion Detection" />
           <div class="project-info">
             <h3>Face Emotion Detection</h3>
@@ -545,7 +869,7 @@
           </div>
         </div>
 
-        <!-- PROJECT 2 -->
+        <!-- PROJECT 3 -->
         <div class="project-card">
           <img src="img/pet.png" alt="Pet Recommendation System" />
           <div class="project-info">
